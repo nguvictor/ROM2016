@@ -2,16 +2,26 @@
 
 public class TriloController : MonoBehaviour {
 
-    private enum states { WALK, DIG_DOWN, DIG_SIDEWAYS, CLIMB_UP};
+    
 
-	// Use this for initialization
-	void Start () {
+    public enum states { WALK, DIG_DOWN, DIG_SIDEWAYS, CLIMB_UP, FALL, BASH};
+    states currentState;
+    bool isClimber;
+    bool isBashing;
 
+    // Use this for initialization
+    void Start ()
+    {
+        currentState = states.WALK;
+        isClimber = false;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 	    
+        
+
 	}
 
     // For movement
@@ -30,7 +40,17 @@ public class TriloController : MonoBehaviour {
 
     }
 
-    public void Jump()
+    public void Climb()
+    {
+
+    }
+
+    public void Dig()
+    {
+
+    }
+
+    public void Bash()
     {
 
     }
