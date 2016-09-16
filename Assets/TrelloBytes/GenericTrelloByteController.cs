@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GenericTrelloByteController : MonoBehaviour {
 
-    enum trelloState {walking, falling, digging, climber, bashing };
+  public  enum trelloState {walking, falling, digging, climber, bashing };
     bool isClimber;
 
     trelloState currentState = trelloState.walking;
