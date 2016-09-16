@@ -5,7 +5,7 @@ public class MenuManager : MonoBehaviour {
 
     bool assetSelected;
     int x = 10; //number of possible 
-  //  GenericTrelloByteController.TrelloState button = GenericTrelloByteController.TrelloState.walking;
+ TriloController.states buttonSelected= TriloController.states.IDLE// for buttons
     //public enum TrelloStatus;
     void Start() {
 
