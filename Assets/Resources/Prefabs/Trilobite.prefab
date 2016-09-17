@@ -24,7 +24,7 @@ GameObject:
   - 61: {fileID: 61000011711502742}
   - 114: {fileID: 114000013573895678}
   - 60: {fileID: 60000013413514088}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trilobite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
