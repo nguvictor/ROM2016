@@ -228,6 +228,8 @@ MonoBehaviour:
   buttonGO: {fileID: 1000012931658160, guid: 36ac8a09c28744f429b404ed44ee894b, type: 2}
   canvas: {fileID: 223000010911748908}
   buttonPanel: {fileID: 1000011097828840}
+  texture: {fileID: 2800000, guid: 449e9d0b56831fb408ee7f657a2c188f, type: 3}
+  cursorMode: 0
 --- !u!222 &222000011058205560
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -292,8 +294,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 478, y: -486}
-  m_SizeDelta: {x: 956.01, y: 104}
+  m_AnchoredPosition: {x: 536.25, y: -486.5}
+  m_SizeDelta: {x: 1071.5, y: 105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000014053085894
 RectTransform:

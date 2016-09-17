@@ -10,6 +10,8 @@ public class MenuManager : MonoBehaviour {
     GameObject HighlitedButton;
     Button button;
     bool assetSelected;
+    public Texture2D texture;
+    public CursorMode cursorMode = CursorMode.Auto;
     int x = 10; //number of possible 
 
     TriloController.states buttonSelected = TriloController.states.IDLE;// for buttons
@@ -20,13 +22,22 @@ public class MenuManager : MonoBehaviour {
         // buttonGO.GetComponent<Button>();
         createMenu();
     }
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+
+
+            if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            {
+                deselect();
+            }
+        }
+    }
 
     public void createMenu() {
-        for (int i = 0; i < System.Enum.GetValues((typeof(TriloController.states))).Length; i++) {
+        for (int i = 0; i < System.Enum.GetValues((typeof(TriloController.states))).Length-5; i++) {
             TriloController.states state = (TriloController.states)(System.Enum.GetValues((typeof(TriloController.states))).GetValue(i));
             string x = (System.Enum.GetValues((typeof(TriloController.states))).GetValue(i)).ToString();
             GameObject newButton = Instantiate(buttonGO) as GameObject;
@@ -36,7 +47,7 @@ public class MenuManager : MonoBehaviour {
             button.GetComponentInChildren<Text>().color = new Color(0, 0, 0);
             newButton.transform.SetParent(buttonPanel.transform, false);
             //call change enum function;
-            button.onClick.AddListener(() => { deselect(); print(x); assetSelected = true; buttonSelected = state; SetHighlightButton(newButton); });
+            button.onClick.AddListener(() => { deselect(); print(x); assetSelected = true; buttonSelected = state; SetHighlightButton(newButton); fancyCursor(); });
         }
 
 
@@ -45,6 +56,7 @@ public class MenuManager : MonoBehaviour {
 
 
     public void deselect() {
+        changeCursorToDefault();
         assetSelected = false;
         if (HighlitedButton == null)
         {
@@ -59,7 +71,7 @@ public class MenuManager : MonoBehaviour {
             ab.GetComponentInChildren<Text>().color = new Color(0, 0, 0);
             HighlitedButton = null;
         }
-
+        buttonSelected = TriloController.states.IDLE;
     }
 
     public void SetHighlightButton(GameObject button)
@@ -71,5 +83,17 @@ public class MenuManager : MonoBehaviour {
         b.GetComponentInChildren<Text>().color = new Color(1, 1, 1);
         //HighlitedButton.assetSelected = true;
 
+    }
+
+    public void changeCursorToDefault()
+    {
+        print("Cursor Change");
+    Cursor.SetCursor(null, Vector2.zero, cursorMode);
+    }
+
+public void fancyCursor()
+    {
+        print("default");
+    Cursor.SetCursor(texture, Vector2.zero, cursorMode);
     }
 }
