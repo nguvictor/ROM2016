@@ -3,7 +3,7 @@ using Destructible2D;
 
 public class TriloController : MonoBehaviour {
 
-    public enum states {  DIG, CLIMB, BASH, IDLE, WALK, FALL,  DEATH, SURVIVE};
+    public enum states {  DIG, CLIMB, BASH, IDLE, WALK, FALL,  DEATH, SURVIVE, BLOCK};
 
     public float moveFactor, climbFactor, maxVel, bashRate, digRate;
 
