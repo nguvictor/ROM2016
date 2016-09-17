@@ -2,17 +2,19 @@
 
 public class TriloController : MonoBehaviour {
 
-    public enum states { IDLE, WALK, DIG_DOWN, DIG_SIDEWAYS, CLIMB_UP, FALL, BASH};
+    public enum states { IDLE, WALK, DIG_DOWN, CLIMB_UP, FALL, BASH};
 
-    public float moveFactor;
-    public float maxVel;
+    public float moveFactor, maxVel, bashRate, digRate;
 
     private states currentState;
 
     private bool isClimber;
+    private bool readyToBash;
     private bool isBashing;
 
     private int direction;
+
+    private float nextBash, nextDig;
 
     private Transform tf;
     private Rigidbody2D rb;
@@ -22,18 +24,35 @@ public class TriloController : MonoBehaviour {
     {
         currentState = states.WALK;
         isClimber = false;
+        readyToBash = false;
         isBashing = false;
 
         direction = 1;
 
+        nextBash = Time.time;
+        nextDig = Time.time;
+
         tf = transform;
         rb = GetComponent<Rigidbody2D>();
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
     {
-        
+        if (currentState == states.BASH && Time.time > nextBash)
+        {
+            Bash();
+            nextBash = Time.time + bashRate;
+        }
+
+        if (currentState == states.DIG_DOWN && Time.time > nextDig)
+        {
+            Dig();
+            nextDig = Time.time + digRate;
+        }
+
+
+
 	}
 
     // For movement
@@ -43,31 +62,68 @@ public class TriloController : MonoBehaviour {
             Walk();
     }
 
+    // detects collisionss
     void OnCollisionEnter2D(Collision2D coll)
     {
-        Debug.Log("colldided");
-        direction = -direction;
-        Walk();
+        if (coll.gameObject.tag == "Wall")
+        {
+            if (!readyToBash)
+                FlipDirection();
+            else
+                currentState = states.BASH;
+        }
+    }
+
+    //IDLE, WALK, DIG_DOWN, CLIMB_UP, FALL, BASH
+    public void PerformAbility(states newState)
+    {
+        switch(newState)
+        {
+            case states.IDLE: //idle
+                return;
+            case states.WALK: //walk
+                currentState = newState;
+                break;
+            case states.DIG_DOWN:
+                currentState = newState;
+                break;
+            case states.CLIMB_UP:
+
+                break;
+            case states.FALL:
+
+                break;
+            case states.BASH:
+                ReadyBash();
+                break;
+        }
     }
 
     // moving left or right
     public void Walk()
+
     {
-        Debug.Log("vel is " + rb.velocity);
+        //Debug.Log("vel is " + rb.velocity);
         if (direction > 0) direction = 1;
         else if (direction < 0) direction = -1;
         if (Mathf.Abs(rb.velocity.x) < maxVel)
             rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime, 0f));
     }
 
+    // digging down
+    public void Dig()
+    {
+        //victor's digging code
+    }
+
     // climbing up "steps"
     public void Climb()
     {
-
+        //climbing things
     }
 
-    // digging down
-    public void Dig()
+    // falling; only moving vertically
+    public void Fall()
     {
 
     }
@@ -75,7 +131,20 @@ public class TriloController : MonoBehaviour {
     // bashing walls
     public void Bash()
     {
+        //victor's sideways bashing code
+    }
 
+    // To be hooked up to the "bash" button
+    public void ReadyBash()
+    {
+        readyToBash = true;
+    }
+
+    // flips direction value and sprite
+    protected void FlipDirection()
+    {
+        direction = -direction;
+        tf.localScale = new Vector3(-tf.localScale.x, 1f, 1f);
     }
 
     // kills trilo
