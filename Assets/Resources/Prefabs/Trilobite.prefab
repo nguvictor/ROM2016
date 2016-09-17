@@ -23,7 +23,7 @@ GameObject:
   - 50: {fileID: 50000012479888916}
   - 61: {fileID: 61000011711502742}
   - 114: {fileID: 114000013573895678}
-  - 60: {fileID: 60000013413514088}
+  - 60: {fileID: 60000012184554344}
   m_Layer: 8
   m_Name: Trilobite
   m_TagString: Untagged
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010303927976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.8838847, y: 2.8891134, z: 0}
+  m_LocalPosition: {x: -4.008, y: 0.133, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -61,7 +61,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &60000013413514088
+--- !u!60 &60000012184554344
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,21 +75,18 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 1.185771, y: 0.74760723}
-      - {x: -1.2704451, y: 0.77499986}
-      - {x: -1.4822829, y: 0.7222285}
-      - {x: -1.560869, y: 0.5649893}
-      - {x: -1.551738, y: -0.40976357}
-      - {x: -1.5391982, y: -0.52312565}
-      - {x: -1.4808967, y: -0.62996006}
-      - {x: -1.3923767, y: -0.68181753}
-      - {x: -1.2613137, y: -0.70195293}
-      - {x: 1.1583014, y: -0.70658684}
-      - {x: 1.2991993, y: -0.69485927}
-      - {x: 1.4079094, y: -0.64994}
-      - {x: 1.5093083, y: -0.5573108}
-      - {x: 1.551738, y: -0.4371562}
-      - {x: 1.560869, y: 0.47368002}
+    - - {x: 0.3993256, y: -0.13783196}
+      - {x: 0.46696353, y: -0.071321346}
+      - {x: 0.4838133, y: -0.01785288}
+      - {x: 0.44, y: 0.06}
+      - {x: 0.32, y: 0.099999994}
+      - {x: 0.25, y: 0.07}
+      - {x: 0.029918432, y: 0.050290123}
+      - {x: -0.14269257, y: 0.030000001}
+      - {x: -0.29358006, y: -0.02546499}
+      - {x: -0.33793783, y: -0.12389812}
+      - {x: -0.32994366, y: -0.17790946}
+      - {x: 0.27502847, y: -0.1779095}
 --- !u!61 &61000011711502742
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -119,7 +116,7 @@ MonoBehaviour:
   maxVel: 5
   bashRate: 0
   digRate: 0
-  digTexture: {fileID: 2800000, guid: 6e3dcd2842e01864e9ea33d6d89ad5cb, type: 3}
+  digTexture: {fileID: 2800000, guid: 239aa79072a0f684d9b00005ff99c52a, type: 3}
 --- !u!212 &212000013560741600
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -149,7 +146,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6e3dcd2842e01864e9ea33d6d89ad5cb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c375fed1ac8690745a8775227fc9a968, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

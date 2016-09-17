@@ -33,7 +33,7 @@ public class TriloController : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        currentState = states.WALK;
+        currentState = states.DIG_DOWN;
         isClimber = false;
         readyToBash = false;
         isBashing = false;
@@ -149,7 +149,7 @@ public class TriloController : MonoBehaviour {
     public void Dig()
     {
         //victor's digging code
-        D2dDestructible.StampAll(transform.position, Vector2.one * 3.2f, 0.0f, digTexture, 1, -1);
+        D2dDestructible.StampAll(transform.position, Vector2.one * 1.2f, 0.0f, digTexture, 1, -1);
     }
 
     // climbing up "steps"
