@@ -98,9 +98,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0.4470179, y: 0.06667876}
+  m_Offset: {x: 0.44701767, y: 0.06383726}
   serializedVersion: 2
-  m_Size: {x: 0.27361184, y: 0.065432206}
+  m_Size: {x: 0.27361178, y: 0.071115255}
 --- !u!114 &114000013573895678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,13 +112,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66ed7df4330a4c4cbd4e7ba3b5546ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveFactor: 500
+  moveFactor: 400
   climbFactor: 0
   maxVel: 5
   bashRate: 0
   digRate: 0
-  currentState: 0
+  currentState: 4
   digTexture: {fileID: 2800000, guid: 239aa79072a0f684d9b00005ff99c52a, type: 3}
+  direction: 1
 --- !u!212 &212000013560741600
 SpriteRenderer:
   m_ObjectHideFlags: 1

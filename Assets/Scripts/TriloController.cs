@@ -21,7 +21,7 @@ public class TriloController : MonoBehaviour {
     //Digging
     public Texture2D digTexture; 
 
-    private int direction;
+    public int direction = 1;
 
     private float nextBash, nextDig;
 
@@ -36,18 +36,18 @@ public class TriloController : MonoBehaviour {
     void Start ()
     {
         currentState = states.WALK;
-        isClimber = true;
+        isClimber = false;
         isClimbing = false;
         readyToBash = false;
         isBashing = false;
 
         digRate = 1.0f;
 
-        flipThreshold = 0.3f;
+        flipThreshold = 0.1f;
 
-        climbFactor = 20.0f;
+        climbFactor = 15.0f;
 
-        direction = 1;
+        //direction = 1;
 
         nextBash = Time.time;
         nextDig = Time.time;
@@ -70,6 +70,14 @@ public class TriloController : MonoBehaviour {
         {
             Dig();
             nextDig = Time.time + digRate;
+        }
+
+        if(currentState == states.CLIMB)
+        {
+            rb.gravityScale = 0.0f;
+        }else
+        {
+            rb.gravityScale = 1.0f;
         }
 
 	}
@@ -96,10 +104,21 @@ public class TriloController : MonoBehaviour {
                 currentState = states.BASH;
         }
 
-        if(currentState == states.WALK && Mathf.Abs(rb.velocity.x) < flipThreshold)
+        Vector2 contactNormal = coll.contacts[0].normal;
+
+        //Debug.Log(Vector2.Angle(transform.right, contactNormal));
+        Debug.DrawLine(transform.right, transform.right * 3.0f,Color.red);
+        //Debug.DrawLine(contactNormal, contactNormal*3.0f, Color.blue);
+        
+        if (currentState == states.WALK && Mathf.Abs(rb.velocity.x) < flipThreshold && CheckOnWall())
         {
             FlipDirection();
-        }
+        }/*
+        else if (currentState == states.WALK && Mathf.Abs(rb.velocity.x) < flipThreshold)//They might be stuck help them out
+        {
+            Debug.Log("Assistance" + Mathf.Abs(rb.velocity.x));
+            rb.AddForce(transform.right * direction * Time.deltaTime * moveFactor*1.5f);
+        }*/
         /*
         if(isClimber && Mathf.Abs(rb.velocity.x) < flipThreshold)
         {
@@ -167,15 +186,32 @@ public class TriloController : MonoBehaviour {
     public void Walk()
 
     {
+        if (currentState == states.WALK && Mathf.Abs(rb.velocity.x) < flipThreshold && CheckOnWall())
+        {
+            FlipDirection();
+        }/*
+        else if (currentState == states.WALK && Mathf.Abs(rb.velocity.x) < flipThreshold)//They might be stuck help them out
+        {
+            Debug.Log("Assistance" + Mathf.Abs(rb.velocity.x));
+            rb.AddForce(transform.right * direction * Time.deltaTime * moveFactor * 2.5f);
+        }*/
         //Debug.Log("vel is " + rb.velocity);
         if (direction > 0) direction = 1;
         else if (direction < 0) direction = -1;
         if (Mathf.Abs(rb.velocity.x) < maxVel)
-            rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime, 0f));
+            rb.AddForce(transform.right * direction * Time.deltaTime * moveFactor);
+        Debug.DrawLine(transform.position, transform.right * direction * moveFactor * 2.0f);
+        //rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime, 0f));
 
         //Clamp the rotation so the trilo doesn't flip
         if (currentState != states.CLIMB)
-            rb.rotation = Mathf.Clamp(rb.rotation, -25.0f,25.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
+        {
+            if(direction > 0)
+                rb.rotation = Mathf.Clamp(rb.rotation, -20.0f, 25.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
+            else
+                rb.rotation = Mathf.Clamp(rb.rotation, -25.0f, 20.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
+        }
+            
     }
 
     // digging down
@@ -202,21 +238,41 @@ public class TriloController : MonoBehaviour {
 
         }
         
-        rb.rotation = Mathf.Clamp(rb.rotation, 60.0f, 180.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
+        if(direction == 1)
+            rb.rotation = Mathf.Clamp(rb.rotation, 30.0f, 180.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
+        else
+            rb.rotation = Mathf.Clamp(rb.rotation, -30.0f, -180.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
     }
 
     public bool CheckOnSurface()
     {
         
         bool result = false;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position , transform.position - transform.up*0.8f);
-        Debug.DrawLine(transform.position , transform.position - transform.up*0.8f );
+        RaycastHit2D hit = Physics2D.Raycast(transform.position - transform.up * 0.1f , transform.position - transform.up*0.8f);
+        Debug.DrawLine(transform.position - transform.up * 0.1f, transform.position - transform.up*0.8f );
         //Debug.Log(hit.collider.tag);
         if (hit.collider != null && hit.collider.tag != "TRELLO")
         {
-            //
+            Debug.Log(hit.collider.tag);
             result = true;
         }
+        return result;
+    }
+
+    public bool CheckOnWall()
+    {
+
+        bool result = false;
+        
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.position + transform.right * 0.8f);
+        Debug.DrawLine(transform.position, transform.position + transform.right * 0.8f);
+        //Debug.Log(hit.collider.tag);
+        if (hit.collider != null && hit.collider.tag != "TRELLO")
+        {
+            Debug.Log(hit.collider.tag);
+            result = true;
+        }
+        Debug.Log(result);
         return result;
     }
 
