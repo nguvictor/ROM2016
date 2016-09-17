@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Destructible2D;
 
 public class TriloController : MonoBehaviour {
 
@@ -14,6 +15,9 @@ public class TriloController : MonoBehaviour {
 
     //Thresholds
     private float flipThreshold; //Threshold to cause a flip
+
+    //Digging
+    public Texture2D digTexture; 
 
     private int direction;
 
@@ -33,6 +37,8 @@ public class TriloController : MonoBehaviour {
         isClimber = false;
         readyToBash = false;
         isBashing = false;
+
+        digRate = 1.0f;
 
         flipThreshold = 0.2f;
 
@@ -85,7 +91,6 @@ public class TriloController : MonoBehaviour {
         if(Mathf.Abs(rb.velocity.x) < flipThreshold)
         {
             FlipDirection();
-            Debug.Log("Git");
         }
 
     }
@@ -144,6 +149,7 @@ public class TriloController : MonoBehaviour {
     public void Dig()
     {
         //victor's digging code
+        D2dDestructible.StampAll(transform.position, Vector2.one * 3.2f, 0.0f, digTexture, 1, -1);
     }
 
     // climbing up "steps"

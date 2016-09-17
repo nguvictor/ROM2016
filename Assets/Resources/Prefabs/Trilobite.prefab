@@ -119,6 +119,7 @@ MonoBehaviour:
   maxVel: 5
   bashRate: 0
   digRate: 0
+  digTexture: {fileID: 2800000, guid: 6e3dcd2842e01864e9ea33d6d89ad5cb, type: 3}
 --- !u!212 &212000013560741600
 SpriteRenderer:
   m_ObjectHideFlags: 1
