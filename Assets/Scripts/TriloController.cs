@@ -3,7 +3,7 @@ using Destructible2D;
 
 public class TriloController : MonoBehaviour {
 
-    public enum states { IDLE, WALK, DIG_DOWN, CLIMB_UP, FALL, BASH, DEATH, SURVIVE};
+    public enum states {  DIG, CLIMB, BASH, IDLE, WALK, FALL,  DEATH, SURVIVE};
 
     public float moveFactor, maxVel, bashRate, digRate;
 
@@ -60,7 +60,7 @@ public class TriloController : MonoBehaviour {
             nextBash = Time.time + bashRate;
         }
 
-        if (currentState == states.DIG_DOWN && Time.time > nextDig)
+        if (currentState == states.DIG && Time.time > nextDig)
         {
             Dig();
             nextDig = Time.time + digRate;
@@ -115,10 +115,10 @@ public class TriloController : MonoBehaviour {
             case states.WALK: //walk
                 currentState = newState;
                 break;
-            case states.DIG_DOWN:
+            case states.DIG:
                 currentState = newState;
                 break;
-            case states.CLIMB_UP:
+            case states.CLIMB:
 
                 break;
             case states.FALL:
@@ -141,7 +141,7 @@ public class TriloController : MonoBehaviour {
             rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime, 0f));
 
         //Clamp the rotation so the trilo doesn't flip
-        if(currentState != states.CLIMB_UP)
+        if(currentState != states.CLIMB)
             rb.rotation = Mathf.Clamp(rb.rotation, -30.0f,30.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
     }
 
