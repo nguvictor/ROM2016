@@ -43,7 +43,7 @@ public class TriloController : MonoBehaviour {
 
         digRate = 1.0f;
 
-        flipThreshold = 0.1f;
+        flipThreshold = 0.8f;
 
         climbFactor = 15.0f;
 
@@ -93,6 +93,7 @@ public class TriloController : MonoBehaviour {
             Fall();
     }
 
+
     // detects collisionss
     void OnCollisionEnter2D(Collision2D coll)
     {
@@ -110,7 +111,7 @@ public class TriloController : MonoBehaviour {
         Debug.DrawLine(transform.right, transform.right * 3.0f,Color.red);
         //Debug.DrawLine(contactNormal, contactNormal*3.0f, Color.blue);
         
-        if (currentState == states.WALK && Mathf.Abs(rb.velocity.x) < flipThreshold && CheckOnWall())
+        if (currentState == states.WALK && Mathf.Abs(rb.velocity.x) < flipThreshold) //&& CheckOnWall())
         {
             FlipDirection();
         }/*
@@ -186,6 +187,7 @@ public class TriloController : MonoBehaviour {
     public void Walk()
 
     {
+        /*
         if (currentState == states.WALK && Mathf.Abs(rb.velocity.x) < flipThreshold && CheckOnWall())
         {
             FlipDirection();
@@ -207,7 +209,7 @@ public class TriloController : MonoBehaviour {
         if (currentState != states.CLIMB)
         {
             if(direction > 0)
-                rb.rotation = Mathf.Clamp(rb.rotation, -20.0f, 25.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
+                rb.rotation = Mathf.Clamp(rb.rotation, -20.0f, 30.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
             else
                 rb.rotation = Mathf.Clamp(rb.rotation, -25.0f, 20.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
         }
