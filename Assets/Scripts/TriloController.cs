@@ -3,7 +3,8 @@ using Destructible2D;
 
 public class TriloController : MonoBehaviour {
 
-    public enum states {  DIG, CLIMB, BASH, IDLE, WALK, FALL,  DEATH, SURVIVE};
+    //Idle and following are "unclickable"
+    public enum states {DIG, CLIMB, BASH, BLOCK, IDLE, WALK, FALL,  DEATH, SURVIVE};
 
     public float moveFactor, maxVel, bashRate, digRate;
 
@@ -33,7 +34,7 @@ public class TriloController : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        currentState = states.DIG_DOWN;
+        currentState = states.WALK;
         isClimber = false;
         readyToBash = false;
         isBashing = false;
@@ -54,6 +55,7 @@ public class TriloController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+
         if (currentState == states.BASH && Time.time > nextBash)
         {
             Bash();
@@ -65,8 +67,6 @@ public class TriloController : MonoBehaviour {
             Dig();
             nextDig = Time.time + digRate;
         }
-
-
 
 	}
 
@@ -105,7 +105,7 @@ public class TriloController : MonoBehaviour {
         }
     }
 
-    //IDLE, WALK, DIG_DOWN, CLIMB_UP, FALL, BASH, BLOCK, DEATH, SURVIVE
+    //DIG, CLIMB, BASH, BLOCK, IDLE, WALK, FALL,  DEATH, SURVIVE
     public void PerformAbility(states newState)
     {
         switch(newState)
