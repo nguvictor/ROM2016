@@ -282,7 +282,7 @@ Prefab:
     - target: {fileID: 224000012060259266, guid: 53189ebce85780f489eca55d96bdf381,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0.2499919
+      value: 0.24997
       objectReference: {fileID: 0}
     - target: {fileID: 224000012060259266, guid: 53189ebce85780f489eca55d96bdf381,
         type: 2}
@@ -292,22 +292,52 @@ Prefab:
     - target: {fileID: 224000012060259266, guid: 53189ebce85780f489eca55d96bdf381,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 225
+      value: 463
       objectReference: {fileID: 0}
     - target: {fileID: 224000012060259266, guid: 53189ebce85780f489eca55d96bdf381,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: -450
+      value: -926
       objectReference: {fileID: 0}
     - target: {fileID: 224000012408787838, guid: 53189ebce85780f489eca55d96bdf381,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -446.5
+      value: -988
       objectReference: {fileID: 0}
     - target: {fileID: 224000012408787838, guid: 53189ebce85780f489eca55d96bdf381,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 536.25
+      value: 960.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012408787838, guid: 53189ebce85780f489eca55d96bdf381,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1919.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012408787838, guid: 53189ebce85780f489eca55d96bdf381,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 185
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013339562790, guid: 53189ebce85780f489eca55d96bdf381,
+        type: 2}
+      propertyPath: m_CellSize.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013339562790, guid: 53189ebce85780f489eca55d96bdf381,
+        type: 2}
+      propertyPath: m_CellSize.y
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013339562790, guid: 53189ebce85780f489eca55d96bdf381,
+        type: 2}
+      propertyPath: m_Spacing.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013339562790, guid: 53189ebce85780f489eca55d96bdf381,
+        type: 2}
+      propertyPath: m_Spacing.y
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53189ebce85780f489eca55d96bdf381, type: 2}
