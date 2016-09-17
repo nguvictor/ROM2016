@@ -7,9 +7,10 @@ public class TriloController : MonoBehaviour {
 
     public float moveFactor, maxVel, bashRate, digRate;
 
-    private states currentState;
+    public states currentState;
 
     private bool isClimber;
+    private bool isClimbing;
     private bool readyToBash;
     private bool isBashing;
 
@@ -33,8 +34,9 @@ public class TriloController : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        currentState = states.DIG_DOWN;
-        isClimber = false;
+        currentState = states.WALK;
+        isClimber = true;
+        isClimbing = false;
         readyToBash = false;
         isBashing = false;
 
@@ -75,6 +77,8 @@ public class TriloController : MonoBehaviour {
     {
         if (currentState == states.WALK)
             Walk();
+        if (currentState == states.CLIMB_UP)
+            Climb();
     }
 
     // detects collisionss
@@ -88,10 +92,19 @@ public class TriloController : MonoBehaviour {
                 currentState = states.BASH;
         }
 
-        if(Mathf.Abs(rb.velocity.x) < flipThreshold)
+        if(currentState == states.WALK && Mathf.Abs(rb.velocity.x) < flipThreshold)
         {
             FlipDirection();
         }
+        /*
+        if(isClimber && Mathf.Abs(rb.velocity.x) < flipThreshold)
+        {
+            //Calculate Potential Climb
+
+            //else
+            FlipDirection();
+        }
+        */
 
     }
 
@@ -102,6 +115,12 @@ public class TriloController : MonoBehaviour {
         if (coll.gameObject.tag == "End")
         {
             Survive();
+        }
+
+        if (isClimber)
+        {
+            isClimbing = true;
+            currentState = states.CLIMB_UP;
         }
     }
 
@@ -155,7 +174,9 @@ public class TriloController : MonoBehaviour {
     // climbing up "steps"
     public void Climb()
     {
-        //climbing things
+        if (Mathf.Abs(rb.velocity.x) < maxVel)
+            rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime, 0f));
+        rb.rotation = Mathf.Clamp(rb.rotation, 0.0f, 90.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
     }
 
     // falling; only moving vertically
