@@ -33,7 +33,7 @@ public class TriloController : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        currentState = states.DIG_DOWN;
+        currentState = states.DIG;
         isClimber = false;
         readyToBash = false;
         isBashing = false;
@@ -161,7 +161,7 @@ public class TriloController : MonoBehaviour {
     // falling; only moving vertically
     public void Fall()
     {
-
+        // I reccommend just letting gravity do the work here
     }
 
     // bashing walls

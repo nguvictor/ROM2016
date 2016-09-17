@@ -25,17 +25,34 @@ public class MenuManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
         if (Input.GetMouseButtonDown(0))
         {
 
 
             if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             {
-                deselect();
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    print(hit.collider.gameObject.tag);
+                    if (hit.collider.gameObject.tag.Equals("TRELLO"))
+                    {
+                        hit.collider.gameObject.GetComponent<TriloController>().PerformAbility(buttonSelected);
+                    }
+                    else
+                    {
+
+                        deselect();
+                    }
+                }
+
+
             }
         }
     }
-
     public void createMenu() {
         for (int i = 0; i < System.Enum.GetValues((typeof(TriloController.states))).Length-5; i++) {
             TriloController.states state = (TriloController.states)(System.Enum.GetValues((typeof(TriloController.states))).GetValue(i));
