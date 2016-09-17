@@ -18,6 +18,7 @@ public class MenuManager : MonoBehaviour {
     //public enum TrelloStatus;
 
     void Start() {
+ 
         //create all the buttons
         // buttonGO.GetComponent<Button>();
         createMenu();
@@ -43,9 +44,13 @@ public class MenuManager : MonoBehaviour {
                     }
 
                 }
-                else {
-                   // deselect();
+                else
+                {
+                    // deselect();
                 }
+            }
+            else {
+                deselect();
             }
 
 
