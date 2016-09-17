@@ -3,7 +3,7 @@ using Destructible2D;
 
 public class TriloController : MonoBehaviour {
 
-    public enum states { IDLE, WALK, DIG_DOWN, CLIMB_UP, FALL, BASH, DEATH, SURVIVE};
+    public enum states { IDLE, WALK, DIG_DOWN, CLIMB_UP, FALL, BASH, BLOCK, DEATH, SURVIVE};
 
     public float moveFactor, maxVel, bashRate, digRate;
 
@@ -105,7 +105,7 @@ public class TriloController : MonoBehaviour {
         }
     }
 
-    //IDLE, WALK, DIG_DOWN, CLIMB_UP, FALL, BASH
+    //IDLE, WALK, DIG_DOWN, CLIMB_UP, FALL, BASH, BLOCK, DEATH, SURVIVE
     public void PerformAbility(states newState)
     {
         switch(newState)
@@ -126,6 +126,10 @@ public class TriloController : MonoBehaviour {
                 break;
             case states.BASH:
                 ReadyBash();
+                break;
+            case states.BLOCK:
+                currentState = newState;
+                gameObject.tag = "Triloblock";
                 break;
         }
     }
@@ -180,7 +184,7 @@ public class TriloController : MonoBehaviour {
     protected void FlipDirection()
     {
         direction = -direction;
-        tf.localScale = new Vector3(-tf.localScale.x, 1f, 1f);
+        tf.localScale = new Vector3(-tf.localScale.x, tf.localScale.y, 1f);
     }
 
     // kills trilo
