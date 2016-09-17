@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010171096460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.26, y: 4.63, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: -3.33, y: 0.073, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -88,8 +88,8 @@ MonoBehaviour:
   Layers:
     serializedVersion: 2
     m_Bits: 4294967295
-  StampTex: {fileID: 2800000, guid: 744be6d383afbef4cb6c05031dc8c6fa, type: 3}
-  Size: {x: 2.1, y: 2.1}
+  StampTex: {fileID: 2800000, guid: 239aa79072a0f684d9b00005ff99c52a, type: 3}
+  Size: {x: 1, y: 1}
   Hardness: 1
   Delay: 0.25
 --- !u!212 &212000011413205526
