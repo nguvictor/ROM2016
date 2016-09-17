@@ -25,19 +25,35 @@ public class MenuManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
+
         if (Input.GetMouseButtonDown(0))
         {
 
-
             if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             {
-                deselect();
+
+                if ((hit.collider != null))
+                {
+                    print(hit.collider.gameObject.tag);
+                    if (hit.collider.gameObject.tag.Equals("TRELLO"))
+                    {
+                        hit.collider.gameObject.GetComponent<TriloController>().PerformAbility(buttonSelected);
+                    }
+
+                }
+                else {
+                   // deselect();
+                }
             }
+
+
         }
     }
 
     public void createMenu() {
-        for (int i = 0; i < System.Enum.GetValues((typeof(TriloController.states))).Length-5; i++) {
+        for (int i = 0; i < System.Enum.GetValues((typeof(TriloController.states))).Length-6; i++) {
             TriloController.states state = (TriloController.states)(System.Enum.GetValues((typeof(TriloController.states))).GetValue(i));
             string x = (System.Enum.GetValues((typeof(TriloController.states))).GetValue(i)).ToString();
             GameObject newButton = Instantiate(buttonGO) as GameObject;
