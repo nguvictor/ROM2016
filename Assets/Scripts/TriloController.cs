@@ -4,13 +4,14 @@ using Destructible2D;
 public class TriloController : MonoBehaviour {
 
     //Idle and following are "unclickable"
-    public enum states {DIG, CLIMB, BASH, BLOCK, IDLE, WALK, FALL,  DEATH, SURVIVE};
+    public enum states {  DIG, CLIMB, BASH, IDLE, WALK, FALL,  DEATH, SURVIVE, BLOCK};
 
-    public float moveFactor, maxVel, bashRate, digRate;
+    public float moveFactor, climbFactor, maxVel, bashRate, digRate;
 
-    private states currentState;
+    public states currentState;
 
     private bool isClimber;
+    private bool isClimbing;
     private bool readyToBash;
     private bool isBashing;
 
@@ -35,13 +36,16 @@ public class TriloController : MonoBehaviour {
     void Start ()
     {
         currentState = states.WALK;
-        isClimber = false;
+        isClimber = true;
+        isClimbing = false;
         readyToBash = false;
         isBashing = false;
 
         digRate = 1.0f;
 
-        flipThreshold = 0.2f;
+        flipThreshold = 0.3f;
+
+        climbFactor = 20.0f;
 
         direction = 1;
 
@@ -75,6 +79,10 @@ public class TriloController : MonoBehaviour {
     {
         if (currentState == states.WALK)
             Walk();
+        if (currentState == states.CLIMB)
+            Climb();
+        if (currentState == states.FALL)
+            Fall();
     }
 
     // detects collisionss
@@ -88,10 +96,19 @@ public class TriloController : MonoBehaviour {
                 currentState = states.BASH;
         }
 
-        if(Mathf.Abs(rb.velocity.x) < flipThreshold)
+        if(currentState == states.WALK && Mathf.Abs(rb.velocity.x) < flipThreshold)
         {
             FlipDirection();
         }
+        /*
+        if(isClimber && Mathf.Abs(rb.velocity.x) < flipThreshold)
+        {
+            //Calculate Potential Climb
+
+            //else
+            FlipDirection();
+        }
+        */
 
     }
 
@@ -102,6 +119,18 @@ public class TriloController : MonoBehaviour {
         if (coll.gameObject.tag == "End")
         {
             Survive();
+        }
+
+        if (isClimber && currentState== states.WALK || currentState == states.CLIMB)
+        {
+
+            if (CheckOnSurface())
+            {
+                isClimbing = true;
+                currentState = states.CLIMB;
+            }
+
+            
         }
     }
 
@@ -145,8 +174,8 @@ public class TriloController : MonoBehaviour {
             rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime, 0f));
 
         //Clamp the rotation so the trilo doesn't flip
-        if(currentState != states.CLIMB)
-            rb.rotation = Mathf.Clamp(rb.rotation, -30.0f,30.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
+        if (currentState != states.CLIMB)
+            rb.rotation = Mathf.Clamp(rb.rotation, -25.0f,25.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
     }
 
     // digging down
@@ -159,13 +188,44 @@ public class TriloController : MonoBehaviour {
     // climbing up "steps"
     public void Climb()
     {
-        //climbing things
+        if (CheckOnSurface())//if the trello is in the sky
+        {
+            //Stick on wall
+            if (Mathf.Abs(rb.velocity.x) < maxVel)
+                rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime * 2.0f, climbFactor));
+        }
+        else
+        {
+            //Force to ground
+            currentState = states.FALL;
+            isClimbing = false;
+
+        }
+        
+        rb.rotation = Mathf.Clamp(rb.rotation, 60.0f, 180.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
+    }
+
+    public bool CheckOnSurface()
+    {
+        
+        bool result = false;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position , transform.position - transform.up*0.8f);
+        Debug.DrawLine(transform.position , transform.position - transform.up*0.8f );
+        //Debug.Log(hit.collider.tag);
+        if (hit.collider != null && hit.collider.tag != "TRELLO")
+        {
+            //
+            result = true;
+        }
+        return result;
     }
 
     // falling; only moving vertically
     public void Fall()
     {
-
+        rb.angularVelocity = 0.0f;
+        rb.velocity = Vector2.zero;
+        currentState = states.WALK;
     }
 
     // bashing walls
