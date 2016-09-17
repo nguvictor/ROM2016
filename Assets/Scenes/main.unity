@@ -945,10 +945,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1000012997447882, guid: 9ee5ae2b961d8574e8731c4dde2aae63, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
+        type: 2}
+      propertyPath: startPosition
+      value: 
+      objectReference: {fileID: 494576474}
+    - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
+        type: 2}
+      propertyPath: endPosition
+      value: 
+      objectReference: {fileID: 1956911668}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ee5ae2b961d8574e8731c4dde2aae63, type: 2}
   m_IsPrefabParent: 0
