@@ -45,7 +45,7 @@ public class TriloController : MonoBehaviour {
 
         flipThreshold = 0.3f;
 
-        climbFactor = 20.0f;
+        climbFactor = 18.0f;
 
         //direction = 1;
 
@@ -171,7 +171,9 @@ public class TriloController : MonoBehaviour {
         if (direction > 0) direction = 1;
         else if (direction < 0) direction = -1;
         if (Mathf.Abs(rb.velocity.x) < maxVel)
-            rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime, 0f));
+            rb.AddForce(transform.right * direction * Time.deltaTime * moveFactor);
+        Debug.DrawLine(transform.position, transform.right * direction * moveFactor * 3.0f);
+        //rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime, 0f));
 
         //Clamp the rotation so the trilo doesn't flip
         if (currentState != states.CLIMB)
@@ -202,19 +204,22 @@ public class TriloController : MonoBehaviour {
 
         }
         
-        rb.rotation = Mathf.Clamp(rb.rotation, 60.0f, 180.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
+        if(direction == 1)
+            rb.rotation = Mathf.Clamp(rb.rotation, 30.0f, 180.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
+        else
+            rb.rotation = Mathf.Clamp(rb.rotation, -30.0f, -180.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
     }
 
     public bool CheckOnSurface()
     {
         
         bool result = false;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position , transform.position - transform.up*0.8f);
-        Debug.DrawLine(transform.position , transform.position - transform.up*0.8f );
+        RaycastHit2D hit = Physics2D.Raycast(transform.position - transform.up * 0.1f , transform.position - transform.up*0.8f);
+        Debug.DrawLine(transform.position - transform.up * 0.1f, transform.position - transform.up*0.8f );
         //Debug.Log(hit.collider.tag);
         if (hit.collider != null && hit.collider.tag != "TRELLO")
         {
-            //
+            Debug.Log(hit.collider.tag);
             result = true;
         }
         return result;
