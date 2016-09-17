@@ -34,7 +34,7 @@ public class TriloController : MonoBehaviour {
         readyToBash = false;
         isBashing = false;
 
-        flipThreshold = 1.0f;
+        flipThreshold = 0.2f;
 
         direction = 1;
 
