@@ -5,7 +5,7 @@ public class TriloController : MonoBehaviour {
 
     public enum states {  DIG, CLIMB, BASH, IDLE, WALK, FALL,  DEATH, SURVIVE};
 
-    public float moveFactor, maxVel, bashRate, digRate;
+    public float moveFactor, climbFactor, maxVel, bashRate, digRate;
 
     public states currentState;
 
@@ -44,6 +44,8 @@ public class TriloController : MonoBehaviour {
 
         flipThreshold = 0.2f;
 
+        climbFactor = 20.0f;
+
         direction = 1;
 
         nextBash = Time.time;
@@ -77,7 +79,7 @@ public class TriloController : MonoBehaviour {
     {
         if (currentState == states.WALK)
             Walk();
-        if (currentState == states.CLIMB_UP)
+        if (currentState == states.CLIMB)
             Climb();
     }
 
@@ -119,8 +121,12 @@ public class TriloController : MonoBehaviour {
 
         if (isClimber)
         {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, 10.0f);
+          
+            Debug.Log("Point of contact: " + hit.point);
+
             isClimbing = true;
-            currentState = states.CLIMB_UP;
+            currentState = states.CLIMB;
         }
     }
 
@@ -160,7 +166,7 @@ public class TriloController : MonoBehaviour {
             rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime, 0f));
 
         //Clamp the rotation so the trilo doesn't flip
-        if(currentState != states.CLIMB)
+        if (currentState == states.CLIMB)
             rb.rotation = Mathf.Clamp(rb.rotation, -30.0f,30.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
     }
 
@@ -175,8 +181,8 @@ public class TriloController : MonoBehaviour {
     public void Climb()
     {
         if (Mathf.Abs(rb.velocity.x) < maxVel)
-            rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime, 0f));
-        rb.rotation = Mathf.Clamp(rb.rotation, 0.0f, 90.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
+            rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime, climbFactor));
+        //rb.rotation = Mathf.Clamp(rb.rotation, 0.0f, 90.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
     }
 
     // falling; only moving vertically
