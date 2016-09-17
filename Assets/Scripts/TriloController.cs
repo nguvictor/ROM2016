@@ -12,6 +12,9 @@ public class TriloController : MonoBehaviour {
     private bool readyToBash;
     private bool isBashing;
 
+    //Thresholds
+    private float flipThreshold; //Threshold to cause a flip
+
     private int direction;
 
     private float nextBash, nextDig;
@@ -30,6 +33,8 @@ public class TriloController : MonoBehaviour {
         isClimber = false;
         readyToBash = false;
         isBashing = false;
+
+        flipThreshold = 1.0f;
 
         direction = 1;
 
@@ -75,6 +80,12 @@ public class TriloController : MonoBehaviour {
                 FlipDirection();
             else
                 currentState = states.BASH;
+        }
+
+        if(Mathf.Abs(rb.velocity.x) < flipThreshold)
+        {
+            FlipDirection();
+            Debug.Log("Git");
         }
 
     }
@@ -123,6 +134,10 @@ public class TriloController : MonoBehaviour {
         else if (direction < 0) direction = -1;
         if (Mathf.Abs(rb.velocity.x) < maxVel)
             rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime, 0f));
+
+        //Clamp the rotation so the trilo doesn't flip
+        if(currentState != states.CLIMB_UP)
+            rb.rotation = Mathf.Clamp(rb.rotation, -30.0f,30.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
     }
 
     // digging down
