@@ -9,9 +9,9 @@ public class MenuManager : MonoBehaviour {
     Button button;
     bool assetSelected;
     int x = 10; //number of possible 
-    TriloController.states buttonSelected = TriloController.states.WALK;// for buttons
-    delegate void Back();
-    Back back;
+ //TriloController.states buttonSelected= TriloController.states.IDLE// for buttons
+    //public enum TrelloStatus;
+
     void Start() {
         //create all the buttons
         // buttonGO.GetComponent<Button>();
