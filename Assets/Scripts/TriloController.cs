@@ -42,7 +42,7 @@ public class TriloController : MonoBehaviour {
 
         digRate = 1.0f;
 
-        flipThreshold = 0.2f;
+        flipThreshold = 0.3f;
 
         climbFactor = 20.0f;
 
@@ -81,6 +81,8 @@ public class TriloController : MonoBehaviour {
             Walk();
         if (currentState == states.CLIMB)
             Climb();
+        if (currentState == states.FALL)
+            Fall();
     }
 
     // detects collisionss
@@ -121,12 +123,14 @@ public class TriloController : MonoBehaviour {
 
         if (isClimber)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, 10.0f);
-          
-            Debug.Log("Point of contact: " + hit.point);
 
-            isClimbing = true;
-            currentState = states.CLIMB;
+            if (CheckOnSurface())
+            {
+                isClimbing = true;
+                currentState = states.CLIMB;
+            }
+
+            
         }
     }
 
@@ -170,8 +174,8 @@ public class TriloController : MonoBehaviour {
             rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime, 0f));
 
         //Clamp the rotation so the trilo doesn't flip
-        if (currentState == states.CLIMB)
-            rb.rotation = Mathf.Clamp(rb.rotation, -30.0f,30.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
+        if (currentState != states.CLIMB)
+            rb.rotation = Mathf.Clamp(rb.rotation, -25.0f,25.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
     }
 
     // digging down
@@ -184,15 +188,44 @@ public class TriloController : MonoBehaviour {
     // climbing up "steps"
     public void Climb()
     {
-        if (Mathf.Abs(rb.velocity.x) < maxVel)
-            rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime, climbFactor));
-        //rb.rotation = Mathf.Clamp(rb.rotation, 0.0f, 90.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
+        if (CheckOnSurface())//if the trello is in the sky
+        {
+            //Stick on wall
+            if (Mathf.Abs(rb.velocity.x) < maxVel)
+                rb.AddForce(new Vector2(moveFactor * direction * Time.deltaTime * 2.0f, climbFactor));
+        }
+        else
+        {
+            //Force to ground
+            currentState = states.FALL;
+            isClimbing = false;
+
+        }
+        
+        rb.rotation = Mathf.Clamp(rb.rotation, 60.0f, 180.0f); //Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * 1.0f);
+    }
+
+    public bool CheckOnSurface()
+    {
+        
+        bool result = false;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position , transform.position - transform.up*0.8f);
+        Debug.DrawLine(transform.position , transform.position - transform.up*0.8f );
+        //Debug.Log(hit.collider.tag);
+        if (hit.collider != null && hit.collider.tag != "TRELLO")
+        {
+            //
+            result = true;
+        }
+        return result;
     }
 
     // falling; only moving vertically
     public void Fall()
     {
-
+        rb.angularVelocity = 0.0f;
+        rb.velocity = Vector2.zero;
+        currentState = states.WALK;
     }
 
     // bashing walls

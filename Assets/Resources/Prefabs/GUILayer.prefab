@@ -210,8 +210,8 @@ MonoBehaviour:
   m_ChildAlignment: 6
   m_StartCorner: 2
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 0, y: 0}
+  m_CellSize: {x: 200, y: 150}
+  m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &114000013649810770
@@ -276,8 +276,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0025177, y: 243}
-  m_SizeDelta: {x: 0.0049438, y: -487}
+  m_AnchoredPosition: {x: 0.24997, y: 463}
+  m_SizeDelta: {x: -0.5, y: -926}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000012408787838
 RectTransform:
@@ -294,8 +294,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 536.25, y: -486.5}
-  m_SizeDelta: {x: 1071.5, y: 105}
+  m_AnchoredPosition: {x: 960.24, y: -988}
+  m_SizeDelta: {x: 1919.5, y: 185}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000014053085894
 RectTransform:
