@@ -119,6 +119,7 @@ public class TriloController : MonoBehaviour {
             Survive();
         }
 
+        if (isClimber && currentState== states.WALK || currentState == states.CLIMB)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, 10.0f);
           
