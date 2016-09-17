@@ -20,7 +20,7 @@ public class TriloController : MonoBehaviour {
     //Digging
     public Texture2D digTexture; 
 
-    private int direction;
+    public int direction = 1;
 
     private float nextBash, nextDig;
 
@@ -46,7 +46,7 @@ public class TriloController : MonoBehaviour {
 
         climbFactor = 20.0f;
 
-        direction = 1;
+        //direction = 1;
 
         nextBash = Time.time;
         nextDig = Time.time;
