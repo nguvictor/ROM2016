@@ -10,18 +10,25 @@ public class GameManager : MonoBehaviour {
 
     public int startingSpawnCount = 10; //How many to spawn at the start
 
+
     public float spawnRate=2.0f; //What rate to spawn in seconds
 
     private int spawnedCount=0; //How many we have currently spawned
 
     private float timer; //current timer
 
-    private List<GameObject> trellos;
-    public GameObject trelloObject;
+    private int deathCount; //Death Count of the trellos
+    private int surviveCount; //Survive count of the trellos
 
-	// Use this for initialization
-	void Start () {
-        trellos = new List<GameObject>();
+    private List<TriloController> trellos;
+    public TriloController trelloObject;
+
+    delegate void MultiDelegate(TriloController trello);
+    MultiDelegate destroyCallback;//For when the trello is destroyed
+
+    // Use this for initialization
+    void Start () {
+        trellos = new List<TriloController>();
     }
 	
 	// Update is called once per frame
@@ -30,7 +37,8 @@ public class GameManager : MonoBehaviour {
         {
             if (timer <= 0.0f) {
                 //Spawn trello
-                GameObject trello = (GameObject)Instantiate(trelloObject, new Vector3(startPosition.position.x, startPosition.position.y, 0.0f), Quaternion.identity);
+                TriloController trello = (TriloController)Instantiate(trelloObject, new Vector3(startPosition.position.x, startPosition.position.y, 0.0f), Quaternion.identity);
+                trello.destroyCallback = trelloDestroyed;
                 trellos.Add(trello);
                 spawnedCount += 1;
                 //Reset timer
@@ -40,9 +48,9 @@ public class GameManager : MonoBehaviour {
             timer -= Time.deltaTime;
         }
 
-        List<GameObject> toRemoves = new List<GameObject>();
+        List<TriloController> toRemoves = new List<TriloController>();
         //Check end condition
-        foreach(GameObject trello in trellos)
+        foreach(TriloController trello in trellos)
         {
             if(trello == null) //Probably been destroyed
             {
@@ -50,11 +58,28 @@ public class GameManager : MonoBehaviour {
             }
         }
 
-        foreach (GameObject toRemove in toRemoves)
+        foreach (TriloController toRemove in toRemoves)
         {
             trellos.Remove(toRemove);
         }
 
+
+    }
+
+    void trelloDestroyed(TriloController trilo, TriloController.states state){
+
+        //Death
+        if(state == TriloController.states.DEATH)
+        {
+            //Add to death counter
+            deathCount += 1;
+        }
+        //Survive
+        if (state == TriloController.states.SURVIVE)
+        {
+            //Add to survive counter
+            surviveCount += 1;
+        }
 
     }
 }

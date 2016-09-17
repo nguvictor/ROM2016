@@ -2,7 +2,7 @@
 
 public class TriloController : MonoBehaviour {
 
-    public enum states { IDLE, WALK, DIG_DOWN, CLIMB_UP, FALL, BASH};
+    public enum states { IDLE, WALK, DIG_DOWN, CLIMB_UP, FALL, BASH, DEATH, SURVIVE};
 
     public float moveFactor, maxVel, bashRate, digRate;
 
@@ -18,6 +18,10 @@ public class TriloController : MonoBehaviour {
 
     private Transform tf;
     private Rigidbody2D rb;
+
+    //Used to inform GameManager that trilo died/destroyed/survived
+    public delegate void DestroyCallback(TriloController trilo, states state);
+    public DestroyCallback destroyCallback;
 
     // Use this for initialization
     void Start ()
@@ -71,6 +75,17 @@ public class TriloController : MonoBehaviour {
                 FlipDirection();
             else
                 currentState = states.BASH;
+        }
+
+    }
+
+    // detects collisionss
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        //Hits the end
+        if (coll.gameObject.tag == "End")
+        {
+            Survive();
         }
     }
 
@@ -150,7 +165,15 @@ public class TriloController : MonoBehaviour {
     // kills trilo
     protected void Die()
     {
-        Destroy(this);
+        destroyCallback(this,states.DEATH);
+        Destroy(this.gameObject);
+    }
+
+    // If the trilo makes it to the end
+    protected void Survive()
+    {
+        destroyCallback(this, states.SURVIVE);
+        Destroy(this.gameObject);
     }
 
 }
