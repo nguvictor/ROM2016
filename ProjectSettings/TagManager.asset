@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - End
   - TRELLO
+  - Lava
   layers:
   - Default
   - TransparentFX

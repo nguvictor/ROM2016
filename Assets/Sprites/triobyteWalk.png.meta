@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 311ad11e7759f3c45b807b4e4056e512
-timeCreated: 1474158441
+guid: cb3207ce6def3a84582259c774de48c4
+timeCreated: 1474207684
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -20,7 +20,6 @@ TextureImporter:
     21300026: triobyteWalk_13
     21300028: triobyteWalk_14
     21300030: triobyteWalk_15
-    21300032: triobyteWalk_16
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -73,10 +72,10 @@ TextureImporter:
       name: triobyteWalk_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 110
-        height: 43
+        width: 105
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -86,10 +85,10 @@ TextureImporter:
       name: triobyteWalk_1
       rect:
         serializedVersion: 2
-        x: 112
+        x: 105
         y: 0
-        width: 110
-        height: 43
+        width: 104
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -99,10 +98,10 @@ TextureImporter:
       name: triobyteWalk_2
       rect:
         serializedVersion: 2
-        x: 223
+        x: 211
         y: 0
-        width: 110
-        height: 43
+        width: 103
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,10 +111,10 @@ TextureImporter:
       name: triobyteWalk_3
       rect:
         serializedVersion: 2
-        x: 334
+        x: 316
         y: 0
-        width: 109
-        height: 43
+        width: 102
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,10 +124,10 @@ TextureImporter:
       name: triobyteWalk_4
       rect:
         serializedVersion: 2
-        x: 445
+        x: 422
         y: 0
-        width: 109
-        height: 43
+        width: 101
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,10 +137,10 @@ TextureImporter:
       name: triobyteWalk_5
       rect:
         serializedVersion: 2
-        x: 556
+        x: 527
         y: 0
-        width: 109
-        height: 43
+        width: 100
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,10 +150,10 @@ TextureImporter:
       name: triobyteWalk_6
       rect:
         serializedVersion: 2
-        x: 667
+        x: 633
         y: 0
-        width: 108
-        height: 43
+        width: 99
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,10 +163,10 @@ TextureImporter:
       name: triobyteWalk_7
       rect:
         serializedVersion: 2
-        x: 778
+        x: 738
         y: 0
-        width: 108
-        height: 43
+        width: 98
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,10 +176,10 @@ TextureImporter:
       name: triobyteWalk_8
       rect:
         serializedVersion: 2
-        x: 889
+        x: 843
         y: 0
-        width: 108
-        height: 43
+        width: 99
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,10 +189,10 @@ TextureImporter:
       name: triobyteWalk_9
       rect:
         serializedVersion: 2
-        x: 1000
+        x: 947
         y: 0
-        width: 109
-        height: 43
+        width: 100
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,10 +202,10 @@ TextureImporter:
       name: triobyteWalk_10
       rect:
         serializedVersion: 2
-        x: 1111
+        x: 1052
         y: 0
-        width: 109
-        height: 43
+        width: 100
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,10 +215,10 @@ TextureImporter:
       name: triobyteWalk_11
       rect:
         serializedVersion: 2
-        x: 1222
+        x: 1156
         y: 0
-        width: 109
-        height: 43
+        width: 102
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,10 +228,10 @@ TextureImporter:
       name: triobyteWalk_12
       rect:
         serializedVersion: 2
-        x: 1333
+        x: 1261
         y: 0
-        width: 109
-        height: 43
+        width: 102
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,10 +241,10 @@ TextureImporter:
       name: triobyteWalk_13
       rect:
         serializedVersion: 2
-        x: 1443
+        x: 1365
         y: 0
-        width: 110
-        height: 43
+        width: 104
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,10 +254,10 @@ TextureImporter:
       name: triobyteWalk_14
       rect:
         serializedVersion: 2
-        x: 1554
+        x: 1470
         y: 0
-        width: 110
-        height: 43
+        width: 104
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,23 +267,10 @@ TextureImporter:
       name: triobyteWalk_15
       rect:
         serializedVersion: 2
-        x: 1666
+        x: 1575
         y: 0
-        width: 110
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: triobyteWalk_16
-      rect:
-        serializedVersion: 2
-        x: 1776
-        y: 0
-        width: 111
-        height: 43
+        width: 104
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

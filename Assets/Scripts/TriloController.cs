@@ -47,7 +47,7 @@ public class TriloController : MonoBehaviour {
 
         flipThreshold = 0.8f;
 
-        climbFactor = 15.0f;
+        climbFactor = 50.0f;
 
         //direction = 1;
 
@@ -103,12 +103,8 @@ public class TriloController : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Ground")
         {
-            if (!readyToBash)
-            {
-
-                FlipDirection();
-            }
-            else
+            
+            if(readyToBash)
             {
                 print("Starting to bash");
                 currentState = states.BASH;
@@ -154,7 +150,7 @@ public class TriloController : MonoBehaviour {
   
          if (isClimber && currentState== states.WALK || currentState == states.CLIMB)
         {
-
+            print("Climb my son");
             if (CheckOnSurface())
             {
                 isClimbing = true;
@@ -179,7 +175,7 @@ public class TriloController : MonoBehaviour {
                 currentState = newState;
                 break;
             case states.CLIMB:
-
+                isClimber = true;
                 break;
             case states.FALL:
 
@@ -233,6 +229,7 @@ public class TriloController : MonoBehaviour {
     public void Dig()
     {
         //victor's digging code
+        readyToBash = false;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.up, 1f);
         Debug.DrawLine(transform.position - transform.up * 0.2f, transform.position - transform.up * 10f);
         
@@ -315,6 +312,7 @@ public class TriloController : MonoBehaviour {
     public void Bash()
     {
         //victor's sideways bashing code
+        animator.SetBool("digging", false);
         RaycastHit2D hit = Physics2D.Raycast(new Vector2( transform.position.x+2f*direction, transform.position.y),  transform.right*direction, 1.9f);
         if(hit.collider != null) Debug.Log( hit.collider.tag);
 
