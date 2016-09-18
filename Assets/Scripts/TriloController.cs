@@ -19,7 +19,8 @@ public class TriloController : MonoBehaviour {
     private float flipThreshold; //Threshold to cause a flip
 
     //Digging
-    public Texture2D digTexture; 
+    public Texture2D digTexture;
+    public Texture2D bashTexture;
 
     public int direction = 1;
 
@@ -100,13 +101,19 @@ public class TriloController : MonoBehaviour {
     // detects collisionss
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Wall")
+        if (coll.gameObject.tag == "Ground")
         {
             if (!readyToBash)
+            {
+
                 FlipDirection();
+            }
             else
+            {
+                print("Starting to bash");
                 currentState = states.BASH;
-        }
+            }
+            }
 
         Vector2 contactNormal = coll.contacts[0].normal;
 
@@ -143,8 +150,9 @@ public class TriloController : MonoBehaviour {
         {
             Survive();
         }
-
-        if (isClimber && currentState== states.WALK || currentState == states.CLIMB)
+       
+  
+         if (isClimber && currentState== states.WALK || currentState == states.CLIMB)
         {
 
             if (CheckOnSurface())
@@ -183,6 +191,7 @@ public class TriloController : MonoBehaviour {
                 currentState = newState;
                 gameObject.layer = 9;
                 this.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                animator.SetBool("digging", false);
                 break;
         }
     }
@@ -229,8 +238,9 @@ public class TriloController : MonoBehaviour {
         
         if (hit.collider != null && hit.collider.gameObject.tag == "Ground" )
         {
-            animator.SetBool("digging", true);
+           
             D2dDestructible.StampAll(transform.position, Vector2.one * 1.2f, 0.0f, digTexture, 1, -1);
+            animator.SetBool("digging", true);
         }
         else {
             this.PerformAbility(states.WALK);
@@ -305,13 +315,45 @@ public class TriloController : MonoBehaviour {
     public void Bash()
     {
         //victor's sideways bashing code
-        
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2( transform.position.x+2f*direction, transform.position.y),  transform.right*direction, 1.9f);
+        if(hit.collider != null) Debug.Log( hit.collider.tag);
+
+        if (hit.collider != null && hit.collider.gameObject.tag == "Ground")
+        {
+            print("bashing");
+            isBashing = true;
+            Vector2 offset = new Vector2(transform.position.x+direction*0.4f, transform.position.y+0.1f);
+            D2dDestructible.StampAll(offset, Vector2.one* direction*0.5f, 0.5f, bashTexture, 1, -1);
+            //  animator.SetBool("digging", true);
+            if (direction > 0) direction = 1;
+            else if (direction < 0) direction = -1;
+            if (Mathf.Abs(rb.velocity.x) < maxVel)
+                rb.AddForce(transform.right * direction * Time.deltaTime * moveFactor);
+        }
+        else if (isBashing)
+        {
+            print("I am waliking");
+                
+            isBashing = false;
+            readyToBash = false;
+            currentState = states.WALK;
+            
+        }
+        else {
+            print("I found no wall");
+            currentState = states.WALK;
+        }
+
+      
+
+
     }
 
     // To be hooked up to the "bash" button
     public void ReadyBash()
     {
         readyToBash = true;
+        print("I am ready to bash");
     }
 
     // flips direction value and sprite
