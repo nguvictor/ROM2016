@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+
 
 public class MenuManager : MonoBehaviour {
     public GameObject buttonGO;
@@ -69,10 +71,11 @@ public class MenuManager : MonoBehaviour {
     }
 
     public void createMenu() {
+        GameObject newButton;
         for (int i = 0; i < System.Enum.GetValues((typeof(TriloController.states))).Length-5; i++) {
             TriloController.states state = (TriloController.states)(System.Enum.GetValues((typeof(TriloController.states))).GetValue(i));
             string x = (System.Enum.GetValues((typeof(TriloController.states))).GetValue(i)).ToString();
-            GameObject newButton = Instantiate(buttonGO) as GameObject;
+            newButton = Instantiate(buttonGO) as GameObject;
             button = newButton.GetComponent<Button>();
             newButton.GetComponentInChildren<Text>().text = x;
             //button.image.color = new Color(1, 1, 1, 0.5F);
@@ -82,11 +85,24 @@ public class MenuManager : MonoBehaviour {
             //call change enum function;
             button.onClick.AddListener(() => { deselect(); assetSelected = true; buttonSelected = state; SetHighlightButton(newButton); fancyCursor(); });
         }
+         newButton = Instantiate(buttonGO) as GameObject;
+        button = newButton.GetComponent<Button>();
+        newButton.GetComponentInChildren<Text>().text = "Restart";
+        button.image.color = new Color(1, 1, 1, 0.5F);
+        //button.image.sprite = sprite[i];
+        button.GetComponentInChildren<Text>().color = new Color(0, 0, 0);
+        newButton.transform.SetParent(buttonPanel.transform, false);
+        //call change enum function;
+        button.onClick.AddListener(() => { deselect(); assetSelected = false; Restart(); });
+
+
+    }
+    public void Restart() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
 
 
     }
-
 
     public void deselect() {
         changeCursorToDefault();
@@ -100,7 +116,7 @@ public class MenuManager : MonoBehaviour {
 
             Button ab = HighlitedButton.GetComponent<Button>();
             //MoveHere.assetSelected = false;
-           // ab.image.color = new Color(1, 1, 1, 0.5F);
+            ab.image.color = new Color(1, 1, 1, 0.5F);
             ab.GetComponentInChildren<Text>().color = new Color(0, 0, 0);
             HighlitedButton = null;
         }
