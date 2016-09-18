@@ -46,8 +46,6 @@ public class GameManager : MonoBehaviour
     {
         trellos = new List<TriloController>();
 
-        maxDeaths = 5;
-        minSurvives = 5;
         timeDecrement = 1f;
         timeAfter = 5f;
 
