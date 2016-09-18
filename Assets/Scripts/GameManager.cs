@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
         maxDeaths = 5;
         minSurvives = 5;
-        levelTimer = 10;
+        levelTimer = 99;
         timeDecrement = 1f;
         timeAfter = 5f;
 
