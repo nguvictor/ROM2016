@@ -492,7 +492,7 @@ MonoBehaviour:
   MainTex: {fileID: 2800000, guid: a7ed2b5dde7237d46ae3a3e0a5348951, type: 3}
   DensityTex: {fileID: 0}
   HealTex: {fileID: 0}
-  Indestructible: 0
+  Indestructible: 1
   RecordAlphaCount: 1
   AutoSharpen: 1
   AutoSplit: 0
