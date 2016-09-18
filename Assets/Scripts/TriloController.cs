@@ -179,6 +179,7 @@ public class TriloController : MonoBehaviour {
             case states.BLOCK:
                 currentState = newState;
                 gameObject.layer = 9;
+                this.rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 break;
         }
     }
@@ -220,8 +221,17 @@ public class TriloController : MonoBehaviour {
     public void Dig()
     {
         //victor's digging code
-        D2dDestructible.StampAll(transform.position, Vector2.one * 1.2f, 0.0f, digTexture, 1, -1);
-    }
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.up, 1f);
+        Debug.DrawLine(transform.position - transform.up * 0.2f, transform.position - transform.up * 10f);
+        
+        if (hit.collider != null && hit.collider.gameObject.tag == "Ground" )
+        {
+            D2dDestructible.StampAll(transform.position, Vector2.one * 1.2f, 0.0f, digTexture, 1, -1);
+        }
+        else {
+            this.PerformAbility(states.WALK);
+        }
+        }
 
     // climbing up "steps"
     public void Climb()

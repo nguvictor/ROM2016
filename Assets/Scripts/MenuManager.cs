@@ -42,7 +42,7 @@ public class MenuManager : MonoBehaviour {
 
                 if ((hit.collider != null))
                 {
-                    print(hit.collider.gameObject.tag);
+                   // print(hit.collider.gameObject.tag);
                     if (hit.collider.gameObject.tag.Equals("TRELLO"))
                     {
                         hit.collider.gameObject.GetComponent<TriloController>().PerformAbility(buttonSelected);
