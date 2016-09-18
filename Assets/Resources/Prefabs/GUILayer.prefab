@@ -401,6 +401,11 @@ MonoBehaviour:
   numOfClimbers: 0
   numOfBlockers: 0
   numOfIdiots: 0
+  Sprite1: {fileID: 21300000, guid: 91c57535e5eba4e40829ad69b25dcc05, type: 3}
+  Sprite2: {fileID: 21300000, guid: 609f47b7a470c734a9c2d21e2018669a, type: 3}
+  Sprite3: {fileID: 21300000, guid: 00d63a4e0b450794da039fa064e6ba88, type: 3}
+  Sprite4: {fileID: 21300000, guid: 22ee9daf0521de5409db8b11e5510674, type: 3}
+  sprite: []
 --- !u!114 &114000014090424898
 MonoBehaviour:
   m_ObjectHideFlags: 1
