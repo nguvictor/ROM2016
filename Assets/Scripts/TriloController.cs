@@ -4,7 +4,7 @@ using Destructible2D;
 public class TriloController : MonoBehaviour {
 
     //Idle and following are "unclickable"
-    public enum states {  DIG, CLIMB, BASH, IDLE, WALK, FALL,  DEATH, SURVIVE, BLOCK};
+    public enum states {  DIG, CLIMB, BASH, BLOCK, IDLE, WALK, FALL,  DEATH, SURVIVE};
 
     public float moveFactor, climbFactor, maxVel, bashRate, digRate;
 
