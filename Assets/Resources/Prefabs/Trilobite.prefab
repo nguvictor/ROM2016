@@ -24,6 +24,7 @@ GameObject:
   - 61: {fileID: 61000011711502742}
   - 114: {fileID: 114000013573895678}
   - 60: {fileID: 60000012184554344}
+  - 95: {fileID: 95000010904100920}
   m_Layer: 8
   m_Name: Trilobite
   m_TagString: TRELLO
@@ -101,6 +102,23 @@ BoxCollider2D:
   m_Offset: {x: 0.44701767, y: 0.06383726}
   serializedVersion: 2
   m_Size: {x: 0.27361178, y: 0.071115255}
+--- !u!95 &95000010904100920
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010303927976}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a8b989ebd6c5fa4a8339deee650e9a8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000013573895678
 MonoBehaviour:
   m_ObjectHideFlags: 1
