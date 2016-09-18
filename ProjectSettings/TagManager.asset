@@ -9,6 +9,7 @@ TagManager:
   - End
   - TRELLO
   - Lava
+  - Bedrock
   layers:
   - Default
   - TransparentFX
