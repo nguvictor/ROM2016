@@ -71,7 +71,8 @@ public class MenuManager : MonoBehaviour {
     public void createMenu() {
         for (int i = 0; i < System.Enum.GetValues((typeof(TriloController.states))).Length-5; i++) {
             TriloController.states state = (TriloController.states)(System.Enum.GetValues((typeof(TriloController.states))).GetValue(i));
-            string x = (System.Enum.GetValues((typeof(TriloController.states))).GetValue(i)).ToString();
+            //string x = (System.Enum.GetValues((typeof(TriloController.states))).GetValue(i)).ToString();
+            string x = "";
             GameObject newButton = Instantiate(buttonGO) as GameObject;
             button = newButton.GetComponent<Button>();
             newButton.GetComponentInChildren<Text>().text = x;
