@@ -317,14 +317,14 @@ public class TriloController : MonoBehaviour {
     {
         //victor's sideways bashing code
         animator.SetBool("digging", false);
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2( transform.position.x+2f*direction, transform.position.y),  transform.right*direction, 1.9f);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2( transform.position.x+2f*direction, transform.position.y),  transform.right*direction, 2.2f);
         if(hit.collider != null) Debug.Log( hit.collider.tag);
 
         if (hit.collider != null && hit.collider.gameObject.tag == "Ground")
         {
             print("bashing");
             isBashing = true;
-            Vector2 offset = new Vector2(transform.position.x+direction*0.4f, transform.position.y+0.1f);
+            Vector2 offset = new Vector2(transform.position.x+direction*0.4f, transform.position.y+0.05f);
             D2dDestructible.StampAll(offset, Vector2.one* direction*0.5f, 0.5f, bashTexture, 1, -1);
             //  animator.SetBool("digging", true);
             if (direction > 0) direction = 1;
