@@ -14,10 +14,16 @@ public class MenuManager : MonoBehaviour {
     public CursorMode cursorMode = CursorMode.Auto;
     int x = 10; //number of possible 
 
+    public int numOfBashers;
+    public int numOfClimbers;
+    public int numOfBlockers;
+    public int numOfIdiots;
+
     TriloController.states buttonSelected = TriloController.states.IDLE;// for buttons
     //public enum TrelloStatus;
 
     void Start() {
+ 
         //create all the buttons
         // buttonGO.GetComponent<Button>();
         createMenu();
@@ -43,9 +49,13 @@ public class MenuManager : MonoBehaviour {
                     }
 
                 }
-                else {
-                   // deselect();
+                else
+                {
+                    // deselect();
                 }
+            }
+            else {
+                deselect();
             }
 
 
@@ -53,7 +63,7 @@ public class MenuManager : MonoBehaviour {
     }
 
     public void createMenu() {
-        for (int i = 0; i < System.Enum.GetValues((typeof(TriloController.states))).Length-6; i++) {
+        for (int i = 0; i < System.Enum.GetValues((typeof(TriloController.states))).Length-5; i++) {
             TriloController.states state = (TriloController.states)(System.Enum.GetValues((typeof(TriloController.states))).GetValue(i));
             string x = (System.Enum.GetValues((typeof(TriloController.states))).GetValue(i)).ToString();
             GameObject newButton = Instantiate(buttonGO) as GameObject;

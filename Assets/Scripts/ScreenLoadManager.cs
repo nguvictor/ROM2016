@@ -5,8 +5,7 @@ public class ScreenLoadManager : MonoBehaviour {
 
     public void LoadGameScene()
     {
-        //load whichever scene is used for the game
-        //SceneManager.LoadScene("");
+        SceneManager.LoadScene("main");
     }
 
     public void LoadCreditsScene()
