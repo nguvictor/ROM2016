@@ -137,6 +137,7 @@ MonoBehaviour:
   digRate: 0
   currentState: 4
   digTexture: {fileID: 2800000, guid: 239aa79072a0f684d9b00005ff99c52a, type: 3}
+  bashTexture: {fileID: 2800000, guid: c793ae48c3c4eb6499d7466740854e58, type: 3}
   direction: 1
 --- !u!212 &212000013560741600
 SpriteRenderer:
