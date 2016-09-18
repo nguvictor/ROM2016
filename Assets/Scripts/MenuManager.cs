@@ -19,11 +19,17 @@ public class MenuManager : MonoBehaviour {
     public int numOfBlockers;
     public int numOfIdiots;
 
+    public Sprite Sprite1;
+    public Sprite Sprite2;
+    public Sprite Sprite3;
+    public Sprite Sprite4;
+    public Sprite[] sprite;
     TriloController.states buttonSelected = TriloController.states.IDLE;// for buttons
     //public enum TrelloStatus;
 
     void Start() {
- 
+        
+ sprite = new Sprite[] { Sprite1, Sprite2, Sprite3, Sprite4 };
         //create all the buttons
         // buttonGO.GetComponent<Button>();
         createMenu();
@@ -69,7 +75,8 @@ public class MenuManager : MonoBehaviour {
             GameObject newButton = Instantiate(buttonGO) as GameObject;
             button = newButton.GetComponent<Button>();
             newButton.GetComponentInChildren<Text>().text = x;
-            button.image.color = new Color(1, 1, 1, 0.5F);
+            //button.image.color = new Color(1, 1, 1, 0.5F);
+            button.image.sprite =  sprite[i];
             button.GetComponentInChildren<Text>().color = new Color(0, 0, 0);
             newButton.transform.SetParent(buttonPanel.transform, false);
             //call change enum function;
@@ -93,7 +100,7 @@ public class MenuManager : MonoBehaviour {
 
             Button ab = HighlitedButton.GetComponent<Button>();
             //MoveHere.assetSelected = false;
-            ab.image.color = new Color(1, 1, 1, 0.5F);
+           // ab.image.color = new Color(1, 1, 1, 0.5F);
             ab.GetComponentInChildren<Text>().color = new Color(0, 0, 0);
             HighlitedButton = null;
         }
@@ -105,7 +112,7 @@ public class MenuManager : MonoBehaviour {
 
         HighlitedButton = button;
         Button b = button.GetComponent<Button>();
-        b.image.color = new Color(0.1F, 0, 1, 0.5F);
+        //b.image.color = new Color(0.1F, 0, 1, 0.5F);
         b.GetComponentInChildren<Text>().color = new Color(1, 1, 1);
         //HighlitedButton.assetSelected = true;
 
