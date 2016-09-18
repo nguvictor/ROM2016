@@ -177,7 +177,7 @@ public class TriloController : MonoBehaviour {
                 break;
             case states.BLOCK:
                 currentState = newState;
-                gameObject.tag = "Triloblock";
+                gameObject.layer = 9;
                 break;
         }
     }
