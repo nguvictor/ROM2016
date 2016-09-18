@@ -73,7 +73,7 @@ public class MenuManager : MonoBehaviour {
             button.GetComponentInChildren<Text>().color = new Color(0, 0, 0);
             newButton.transform.SetParent(buttonPanel.transform, false);
             //call change enum function;
-            button.onClick.AddListener(() => { deselect(); print(x); assetSelected = true; buttonSelected = state; SetHighlightButton(newButton); fancyCursor(); });
+            button.onClick.AddListener(() => { deselect(); assetSelected = true; buttonSelected = state; SetHighlightButton(newButton); fancyCursor(); });
         }
 
 
@@ -113,13 +113,13 @@ public class MenuManager : MonoBehaviour {
 
     public void changeCursorToDefault()
     {
-        print("Cursor Change");
+       // print("Cursor Change");
     Cursor.SetCursor(null, Vector2.zero, cursorMode);
     }
 
 public void fancyCursor()
     {
-        print("default");
+        //print("default");
     Cursor.SetCursor(texture, Vector2.zero, cursorMode);
     }
 }

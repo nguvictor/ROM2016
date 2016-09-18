@@ -38,7 +38,7 @@ public class TriloController : MonoBehaviour {
     void Start ()
     {
         currentState = states.WALK;
-        isClimber = false;
+        isClimber = true;
         isClimbing = false;
         readyToBash = false;
         isBashing = false;
@@ -47,7 +47,7 @@ public class TriloController : MonoBehaviour {
 
         flipThreshold = 0.8f;
 
-        climbFactor = 15.0f;
+        climbFactor = 50.0f;
 
         //direction = 1;
 
@@ -103,12 +103,12 @@ public class TriloController : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Ground")
         {
-            if (!readyToBash)
+            if (!readyToBash && !isClimber)
             {
 
                 FlipDirection();
             }
-            else
+            else if(readyToBash)
             {
                 print("Starting to bash");
                 currentState = states.BASH;
@@ -154,7 +154,7 @@ public class TriloController : MonoBehaviour {
   
          if (isClimber && currentState== states.WALK || currentState == states.CLIMB)
         {
-
+            print("Climb my son");
             if (CheckOnSurface())
             {
                 isClimbing = true;
