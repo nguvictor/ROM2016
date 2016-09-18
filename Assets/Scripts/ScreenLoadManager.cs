@@ -5,7 +5,7 @@ public class ScreenLoadManager : MonoBehaviour {
 
     public void LoadGameScene()
     {
-        SceneManager.LoadScene("main");
+        SceneManager.LoadScene("tutorial_Scence00");
     }
 
     public void LoadCreditsScene()

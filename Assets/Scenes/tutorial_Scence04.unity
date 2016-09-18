@@ -954,6 +954,18 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53189ebce85780f489eca55d96bdf381, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &268863251 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013639277914, guid: 53189ebce85780f489eca55d96bdf381,
+    type: 2}
+  m_PrefabInternal: {fileID: 268863250}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &268863252 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000014090424898, guid: 53189ebce85780f489eca55d96bdf381,
+    type: 2}
+  m_PrefabInternal: {fileID: 268863250}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &397925675
 GameObject:
   m_ObjectHideFlags: 0
@@ -4105,7 +4117,7 @@ Prefab:
         type: 2}
       propertyPath: levelTimerText
       value: 
-      objectReference: {fileID: 977756430}
+      objectReference: {fileID: 268863252}
     - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
         type: 2}
       propertyPath: endText
@@ -4119,7 +4131,32 @@ Prefab:
     - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
         type: 2}
       propertyPath: startingSpawnCount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
+        type: 2}
+      propertyPath: trilosRemaining
+      value: 
+      objectReference: {fileID: 268863251}
+    - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
+        type: 2}
+      propertyPath: trilosLost
+      value: 
+      objectReference: {fileID: 977756430}
+    - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
+        type: 2}
+      propertyPath: maxDeaths
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
+        type: 2}
+      propertyPath: minSurvives
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
+        type: 2}
+      propertyPath: levelTimer
+      value: 99
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ee5ae2b961d8574e8731c4dde2aae63, type: 2}
