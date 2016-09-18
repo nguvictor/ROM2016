@@ -1590,12 +1590,17 @@ Prefab:
     - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
         type: 2}
       propertyPath: maxDeaths
-      value: 5
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
         type: 2}
       propertyPath: minSurvives
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
+        type: 2}
+      propertyPath: startingSpawnCount
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ee5ae2b961d8574e8731c4dde2aae63, type: 2}

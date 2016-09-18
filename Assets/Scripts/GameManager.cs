@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     private float spawnTimer; //current timer
     private float timeDecrement; //for the level timer
 
+    private bool isWinner;
+
     private bool gameOver;
 
     private int deathCount; //Death Count of the trellos
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+
         if (spawnedCount < startingSpawnCount && startPosition)
         {
             if (spawnTimer <= 0.0f)
@@ -161,6 +164,8 @@ public class GameManager : MonoBehaviour
             {
                 //you're winner
                 GameOver("Congratulations!");
+                isWinner = true;
+                SceneManager.LoadScene(nextLevelName);
             }
         }
 
