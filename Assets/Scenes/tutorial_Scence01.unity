@@ -1079,6 +1079,21 @@ Prefab:
       propertyPath: endPosition
       value: 
       objectReference: {fileID: 2936024}
+    - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
+        type: 2}
+      propertyPath: levelTimerText
+      value: 
+      objectReference: {fileID: 2069164245}
+    - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
+        type: 2}
+      propertyPath: endText
+      value: 
+      objectReference: {fileID: 2069164244}
+    - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
+        type: 2}
+      propertyPath: nextLevelName
+      value: tutorial_Scence02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ee5ae2b961d8574e8731c4dde2aae63, type: 2}
   m_IsPrefabParent: 0
@@ -4963,6 +4978,18 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53189ebce85780f489eca55d96bdf381, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2069164244 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000012336884148, guid: 53189ebce85780f489eca55d96bdf381,
+    type: 2}
+  m_PrefabInternal: {fileID: 2069164243}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &2069164245 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000010199361330, guid: 53189ebce85780f489eca55d96bdf381,
+    type: 2}
+  m_PrefabInternal: {fileID: 2069164243}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &2084766642
 Prefab:
   m_ObjectHideFlags: 0
