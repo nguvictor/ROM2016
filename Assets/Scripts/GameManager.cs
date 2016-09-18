@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,16 +10,22 @@ public class GameManager : MonoBehaviour
     public Transform startPosition;
     public Transform endPosition;
     public Text levelTimerText, endText;
+    public string nextLevelName;
 
     public int startingSpawnCount = 10; //How many to spawn at the start
 
     public float spawnRate=2.0f; //What rate to spawn in seconds
 
-    private float timeDecrement; //for the level timer
+    
     private int spawnedCount=0; //How many we have currently spawned
 
+    private float timeAfter; //seconds after game ends before scene switches
+    private float endTime; //time that scene switches
     private float spawnTimer; //current timer
+    private float timeDecrement; //for the level timer
     private float levelTimer; //max amount of time to beat level
+
+    private bool gameOver;
 
     private int deathCount; //Death Count of the trellos
     private int surviveCount; //Survive count of the trellos
@@ -40,9 +47,12 @@ public class GameManager : MonoBehaviour
         minSurvives = 5;
         levelTimer = 10;
         timeDecrement = 1f;
+        timeAfter = 5f;
 
         UpdateTimerText();
         UpdateEndText("");
+
+        gameOver = false;
     }
 	
 	// Update is called once per frame
@@ -79,10 +89,10 @@ public class GameManager : MonoBehaviour
             trellos.Remove(toRemove);
         }
 
-        if (levelTimer <= 0f)
+        if (levelTimer <= 0f && !gameOver)
         {
             //game over
-            UpdateEndText("LOSE");
+            GameOver("LOSE");
         }
         else
         {
@@ -90,11 +100,18 @@ public class GameManager : MonoBehaviour
             UpdateTimerText();
         }
 
+        if (gameOver && Time.time > endTime && nextLevelName != null)
+        {
+            Debug.Log("loading next level");
+            SceneManager.LoadScene(nextLevelName);
+        }
+
     }
 
     void UpdateTimerText()
     {
-        levelTimerText.text = "" + Mathf.Round(levelTimer);
+        if (levelTimer < 0) levelTimerText.text = "" + 0;
+        else levelTimerText.text = "" + Mathf.Round(levelTimer);
     }
 
     void UpdateEndText(string result)
@@ -102,30 +119,39 @@ public class GameManager : MonoBehaviour
         endText.text = result;
     }
 
+    void GameOver(string result)
+    {
+        UpdateEndText(result);
+        gameOver = true;
+        endTime = Time.time + timeAfter;
+        Debug.Log("end time is " + endTime);
+        Debug.Log("current time is " + Time.time);
+    }
+
     void trelloDestroyed(TriloController trilo, TriloController.states state)
     {
 
         //Death
-        if(state == TriloController.states.DEATH)
+        if(state == TriloController.states.DEATH && !gameOver)
         {
             //Add to death counter
             deathCount += 1;
             if (deathCount >= maxDeaths)
             {
                 //game over
-                UpdateEndText("LOSE");
+                GameOver("LOSE");
             }
         }
 
         //Survive
-        if (state == TriloController.states.SURVIVE)
+        if (state == TriloController.states.SURVIVE && !gameOver)
         {
             //Add to survive counter
             surviveCount += 1;
             if (surviveCount >= minSurvives)
             {
                 //you're winner
-                UpdateEndText("WIN");
+                GameOver("WIN");
             }
         }
 
