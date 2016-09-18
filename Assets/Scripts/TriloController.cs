@@ -27,6 +27,7 @@ public class TriloController : MonoBehaviour {
 
     private Transform tf;
     private Rigidbody2D rb;
+    private Animator animator;
 
     //Used to inform GameManager that trilo died/destroyed/survived
     public delegate void DestroyCallback(TriloController trilo, states state);
@@ -54,7 +55,9 @@ public class TriloController : MonoBehaviour {
 
         tf = transform;
         rb = GetComponent<Rigidbody2D>();
-	}
+        animator = GetComponent<Animator>();
+        
+    }
 
 	// Update is called once per frame
 	void Update ()
@@ -226,10 +229,12 @@ public class TriloController : MonoBehaviour {
         
         if (hit.collider != null && hit.collider.gameObject.tag == "Ground" )
         {
+            animator.SetBool("digging", true);
             D2dDestructible.StampAll(transform.position, Vector2.one * 1.2f, 0.0f, digTexture, 1, -1);
         }
         else {
             this.PerformAbility(states.WALK);
+            animator.SetBool("digging", false);
         }
         }
 
