@@ -15,3 +15,13 @@ EditorBuildSettings:
     path: Assets/Scenes/tudor_UIscene.unity
   - enabled: 1
     path: Assets/Scenes/tyler-scene.unity
+  - enabled: 1
+    path: Assets/Scenes/tutorial_Scence00.unity
+  - enabled: 1
+    path: Assets/Scenes/tutorial_Scence01.unity
+  - enabled: 1
+    path: Assets/Scenes/tutorial_Scence02.unity
+  - enabled: 0
+    path: Assets/Scenes/tutorial_Scence03.unity
+  - enabled: 1
+    path: Assets/Scenes/tutorial_Scence04.unity
