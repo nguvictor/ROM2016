@@ -101,7 +101,10 @@ public class TriloController : MonoBehaviour {
     // detects collisionss
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Ground")
+        if(coll.gameObject.tag == "Lava"){
+            Die();
+  
+        }else if (coll.gameObject.tag == "Ground")
         {
             
             if(readyToBash)
@@ -189,6 +192,7 @@ public class TriloController : MonoBehaviour {
                 this.rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 animator.SetBool("digging", false);
                 break;
+
         }
     }
 
@@ -365,6 +369,7 @@ public class TriloController : MonoBehaviour {
     protected void Die()
     {
         destroyCallback(this,states.DEATH);
+        print("I want to die " + this.ToString());
         Destroy(this.gameObject);
     }
 
