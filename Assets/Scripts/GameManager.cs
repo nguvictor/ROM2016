@@ -9,28 +9,29 @@ public class GameManager : MonoBehaviour
     public TriloController trelloObject;
     public Transform startPosition;
     public Transform endPosition;
-    public Text levelTimerText, endText;
+    public Text levelTimerText, endText, trilosRemaining, trilosLost;
     public string nextLevelName;
 
     public int startingSpawnCount = 10; //How many to spawn at the start
+    public int maxDeaths; //number of deaths for game over
+    public int minSurvives; //number of trilo survivals for a win
 
     public float spawnRate=2.0f; //What rate to spawn in seconds
+    public float levelTimer; //max amount of time to beat level
 
-    
     private int spawnedCount=0; //How many we have currently spawned
+    private int numTrilos;
+    private int numTrilosAlive;
 
     private float timeAfter; //seconds after game ends before scene switches
     private float endTime; //time that scene switches
     private float spawnTimer; //current timer
     private float timeDecrement; //for the level timer
-    private float levelTimer; //max amount of time to beat level
 
     private bool gameOver;
 
     private int deathCount; //Death Count of the trellos
     private int surviveCount; //Survive count of the trellos
-    private int maxDeaths; //number of deaths for game over
-    private int minSurvives; //number of trilo survivals for a win
 
     private List<TriloController> trellos;
     
@@ -45,12 +46,12 @@ public class GameManager : MonoBehaviour
 
         maxDeaths = 5;
         minSurvives = 5;
-        levelTimer = 99;
         timeDecrement = 1f;
         timeAfter = 5f;
 
         UpdateTimerText();
         UpdateEndText("");
+        UpdateTriloStatText();
 
         gameOver = false;
     }
@@ -67,6 +68,9 @@ public class GameManager : MonoBehaviour
                 trello.destroyCallback = trelloDestroyed;
                 trellos.Add(trello);
                 spawnedCount += 1;
+                numTrilos++;
+                numTrilosAlive++;
+                UpdateTriloStatText();
                 //Reset timer
                 spawnTimer = spawnRate;
             }
@@ -92,26 +96,19 @@ public class GameManager : MonoBehaviour
         if (levelTimer <= 0f && !gameOver)
         {
             //game over
-            GameOver("LOSE");
+            GameOver("Restart?");
         }
         else
         {
             levelTimer -= Time.deltaTime;
             UpdateTimerText();
         }
-
-        if (gameOver && Time.time > endTime && nextLevelName != null)
-        {
-            Debug.Log("loading next level");
-            SceneManager.LoadScene(nextLevelName);
-        }
-
     }
 
     void UpdateTimerText()
     {
-        if (levelTimer < 0) levelTimerText.text = "" + 0;
-        else levelTimerText.text = "" + Mathf.Round(levelTimer);
+        if (levelTimer < 0) levelTimer = 0;
+        else levelTimerText.text = "Time: " + Mathf.Round(levelTimer);
     }
 
     void UpdateEndText(string result)
@@ -119,13 +116,21 @@ public class GameManager : MonoBehaviour
         endText.text = result;
     }
 
+    void UpdateTriloStatText()
+    {
+        trilosRemaining.text = "Remaining: " + numTrilosAlive;
+        trilosLost.text = "Lost: " + deathCount;
+    }
+
     void GameOver(string result)
     {
         UpdateEndText(result);
         gameOver = true;
-        endTime = Time.time + timeAfter;
-        Debug.Log("end time is " + endTime);
-        Debug.Log("current time is " + Time.time);
+    }
+
+    void LoadTitleScreen()
+    {
+        SceneManager.LoadScene(nextLevelName);
     }
 
     void trelloDestroyed(TriloController trilo, TriloController.states state)
@@ -136,10 +141,12 @@ public class GameManager : MonoBehaviour
         {
             //Add to death counter
             deathCount += 1;
+            numTrilosAlive--;
+            UpdateTriloStatText();
             if (deathCount >= maxDeaths)
             {
                 //game over
-                GameOver("LOSE");
+                GameOver("Restart?");
             }
         }
 
@@ -148,10 +155,12 @@ public class GameManager : MonoBehaviour
         {
             //Add to survive counter
             surviveCount += 1;
+            numTrilosAlive--;
+            UpdateTriloStatText();
             if (surviveCount >= minSurvives)
             {
                 //you're winner
-                GameOver("WIN");
+                GameOver("Congratulations!");
             }
         }
 
