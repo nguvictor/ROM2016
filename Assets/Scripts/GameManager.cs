@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateTriloStatText()
     {
-        trilosRemaining.text = "Remaining: " + numTrilosAlive;
+        trilosRemaining.text = "Remaining: " + (startingSpawnCount - spawnedCount);
         trilosLost.text = "Lost: " + deathCount;
     }
 
