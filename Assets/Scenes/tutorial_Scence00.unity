@@ -1203,11 +1203,6 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1337771566}
-    - target: {fileID: 223000010911748908, guid: 53189ebce85780f489eca55d96bdf381,
-        type: 2}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53189ebce85780f489eca55d96bdf381, type: 2}
   m_IsPrefabParent: 0
@@ -1597,13 +1592,11 @@ Prefab:
       propertyPath: minSurvives
       value: 5
       objectReference: {fileID: 0}
-
     - target: {fileID: 114000012918280988, guid: 9ee5ae2b961d8574e8731c4dde2aae63,
         type: 2}
       propertyPath: startingSpawnCount
       value: 10
       objectReference: {fileID: 0}
-
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ee5ae2b961d8574e8731c4dde2aae63, type: 2}
   m_IsPrefabParent: 0

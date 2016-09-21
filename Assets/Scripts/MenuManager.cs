@@ -76,7 +76,7 @@ public class MenuManager : MonoBehaviour {
             TriloController.states state = (TriloController.states)(System.Enum.GetValues((typeof(TriloController.states))).GetValue(i));
             //string x = (System.Enum.GetValues((typeof(TriloController.states))).GetValue(i)).ToString();
             string x = "";
-            GameObject newButton = Instantiate(buttonGO) as GameObject;
+            newButton = Instantiate(buttonGO) as GameObject;
 
             button = newButton.GetComponent<Button>();
             newButton.GetComponentInChildren<Text>().text = x;

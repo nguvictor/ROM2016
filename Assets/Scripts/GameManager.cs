@@ -44,8 +44,7 @@ public class GameManager : MonoBehaviour
     {
         trellos = new List<TriloController>();
 
-        maxDeaths = 5;
-        minSurvives = 5;
+       
         timeDecrement = 1f;
         timeAfter = 5f;
 
@@ -118,7 +117,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateTriloStatText()
     {
-        trilosRemaining.text = "Remaining: " + numTrilosAlive;
+        trilosRemaining.text = "Remaining: " + (startingSpawnCount - spawnedCount);
         trilosLost.text = "Lost: " + deathCount;
     }
 
@@ -161,6 +160,7 @@ public class GameManager : MonoBehaviour
             {
                 //you're winner
                 GameOver("Congratulations!");
+                SceneManager.LoadScene(nextLevelName);
             }
         }
 
